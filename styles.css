@@ -1,0 +1,328 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0a0f 0%, #2d1f2b 50%, #0d0a12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
+}
+
+.sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.9) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.floating-heart {
+  position: absolute;
+  color: rgba(255, 100, 130, 0.3);
+  font-size: 20px;
+  animation: floatUp 8s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(255, 100, 130, 0.5);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.main-container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.romantic-button {
+  position: relative;
+  padding: 32px 60px;
+  font-size: 2.2rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b95 0%, #ff8fab 50%, #ff6b95 100%);
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 0 30px rgba(255, 107, 149, 0.5),
+    0 0 60px rgba(255, 107, 149, 0.3),
+    0 0 100px rgba(255, 107, 149, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.romantic-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow:
+      0 0 30px rgba(255, 107, 149, 0.5),
+      0 0 60px rgba(255, 107, 149, 0.3),
+      0 0 100px rgba(255, 107, 149, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 40px rgba(255, 107, 149, 0.7),
+      0 0 80px rgba(255, 107, 149, 0.4),
+      0 0 120px rgba(255, 107, 149, 0.3),
+      inset 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.romantic-button:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 50px rgba(255, 107, 149, 0.8),
+    0 0 100px rgba(255, 107, 149, 0.5),
+    0 0 150px rgba(255, 107, 149, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.romantic-button:active {
+  transform: scale(0.98);
+}
+
+.button-hidden {
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  display: none;
+}
+
+.petal {
+  position: absolute;
+  width: 25px;
+  height: 30px;
+  background: linear-gradient(135deg, #ff6b95 0%, #ff8fab 50%, #ffb6c1 100%);
+  border-radius: 50% 0 50% 50%;
+  transform-origin: center;
+  animation: petalFall 6s linear forwards;
+  opacity: 0.9;
+  box-shadow: 0 0 15px rgba(255, 107, 149, 0.4);
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-50px) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(100vh) rotate(720deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.card-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.romantic-card {
+  position: relative;
+  background: linear-gradient(145deg, #fff9fb 0%, #fff0f5 100%);
+  border-radius: 20px;
+  padding: 50px 40px;
+  max-width: 420px;
+  width: 90%;
+  transform: scale(0.8) translateY(30px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 20px 60px rgba(255, 107, 149, 0.4),
+    0 0 100px rgba(255, 107, 149, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.card-overlay.visible .romantic-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.card-decoration {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.2); }
+}
+
+.card-message {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #8b3a5c;
+  line-height: 1.4;
+  margin: 20px 0 30px;
+}
+
+.card-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  font-size: 24px;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 107, 149, 0.3);
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #ff6b95;
+  font-size: 18px;
+}
+
+.close-button:hover {
+  background: rgba(255, 107, 149, 0.1);
+  border-color: #ff6b95;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 480px) {
+  .romantic-button {
+    padding: 26px 40px;
+    font-size: 1.6rem;
+  }
+
+  .romantic-card {
+    padding: 40px 25px;
+  }
+
+  .card-message {
+    font-size: 1.8rem;
+  }
+
+  .floating-heart {
+    font-size: 16px;
+  }
+}
+
+.sparkle-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.burst-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ffb6c1 0%, transparent 70%);
+  border-radius: 50%;
+  animation: burstOut 1s ease-out forwards;
+}
+
+@keyframes burstOut {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
